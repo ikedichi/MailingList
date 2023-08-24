@@ -1,0 +1,41 @@
+﻿@page
+@model SuccessModel
+@{
+    ViewData["Title"] = "Success. Your data has been received";
+}
+@using CrudWeb.Models
+@using Microsoft.EntityFrameworkCore;
+@using System.Threading.Tasks
+@using Microsoft.AspNetCore.Mvc.RazorPages;
+
+
+<h1>@ViewData["Title"]</h1>
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (Person person in Model.MailingList)
+        {
+            <tr>
+                <td>@person.ID</td>
+                <td>@person.LastName</td>
+                <td>@person.FirstName</td>
+                <td>@person.Email</td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="id" value="@person.ID" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>

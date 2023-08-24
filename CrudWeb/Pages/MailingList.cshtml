@@ -1,0 +1,90 @@
+﻿@page
+@model CrudWeb.Pages.MailingListModel
+@{
+    @using CrudWeb.Models
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div id="errorToast" class="toast">
+        <div class="toast-header">
+            <strong class="mr-auto">Error</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+        </div>
+        <div class="toast-body">
+            Invalid Input.
+        </div>
+    </div>
+
+    <!-- JavaScript to show toast when model state is invalid -->
+    @if (!ModelState.IsValid)
+    {
+        <script>$(document).ready(function () {
+                $('#errorToast').toast({ delay: 5000 });
+                $('#errorToast').toast('show');
+            });</script>
+    }
+
+
+    <h1>Mailing List</h1>
+
+    <form method="post">
+        <input asp-for="NewPerson.ID" class="form-control" readonly />
+
+        <label asp-for="NewPerson.LastName"></label>
+        <input asp-for="NewPerson.LastName" class="form-control" placeholder="Enter Last Name" />
+
+        <label asp-for="NewPerson.FirstName"></label>
+        <input asp-for="NewPerson.FirstName" class="form-control" placeholder="Enter First Name" />
+
+        <label asp-for="NewPerson.Email"></label>
+        <input asp-for="NewPerson.Email" class="form-control" placeholder="Enter Email" />
+
+        <button type="submit" class="btn btn-primary mt-2">Add</button>
+    </form>
+
+
+
+
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (Person person in Model.MailingList)
+            {
+                <tr>
+                    <td>@person.ID</td>
+                    <td>@person.LastName</td>
+                    <td>@person.FirstName</td>
+                    <td>@person.Email</td>
+                    <td>
+                        <form method="post">
+                            <input type="hidden" name="id" value="@person.ID" />
+                            <button type="submit" asp-page-handler="Delete">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <form method="post" asp-page-handler="Update">
+                            <input type="hidden" name="id" value="@person.ID" />
+                            <input type="text" name="firstName" value="@person.FirstName" class="form-control" />
+                            <input type="text" name="lastName" value="@person.LastName" class="form-control" />
+                            <input type="email" name="email" value="@person.Email" class="form-control" />
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+
+    </table>
+
+}

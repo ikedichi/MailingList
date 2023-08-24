@@ -1,30 +1,47 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var showSuccess = Context.Request.Cookies["FormSubmitted"] == "true";
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>@ViewData["Title"] - CrudWeb</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CrudWeb.styles.css" asp-append-version="true" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0-beta1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqFjcJ6pajs/rfdfs3SO+kD2a9I2b4Ck4C2DgHfViXydVe" crossorigin="anonymous">
+
+    <!-- jQuery first,then Bootstrap JS -->
+    @*<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4Ck4SOF4y4Ck4SOF4y4Ck4Ck4SOF4y4Ck4SOF4y4Ck4SOF4y4Ck4SOF4y4Ck4SOF4y4Ck4SOF4y4Ck4SOF4y4Ck4SOF4y4Ck4SOF4y4Ck4SOF4y4Ck4S" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0-beta1/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqFjcJ6pajs/rfdfs3SO+kD2a9I2b4Ck4C2DgHfViXydVe" crossorigin="anonymous"></script>*@
+
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">CrudWeb</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">Mailing List</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
+                        </li>*@
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/MailingList">Home</a>
                         </li>
+                        <li class="nav-item" style="display:@(showSuccess ? "inline-block" : "none")">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Success">Success</a>
+                        </li>
+
+
                     </ul>
                 </div>
             </div>
