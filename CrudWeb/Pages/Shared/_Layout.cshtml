@@ -1,5 +1,5 @@
 ﻿@{
-    var showSuccess = Context.Request.Cookies["FormSubmitted"] == "true";
+    var showSuccess = Context.Session.GetString("FormSubmitted") == "true";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>@ViewData["Title"] - CrudWeb</title>
+    <title>@ViewData["Title"] - Mailing List</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CrudWeb.styles.css" asp-append-version="true" />
@@ -17,7 +17,7 @@
 
     <!-- jQuery first,then Bootstrap JS -->
     @*<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4Ck4SOF4y4Ck4SOF4y4Ck4Ck4SOF4y4Ck4SOF4y4Ck4SOF4y4Ck4SOF4y4Ck4SOF4y4Ck4SOF4y4Ck4SOF4y4Ck4SOF4y4Ck4SOF4y4Ck4SOF4y4Ck4S" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0-beta1/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqFjcJ6pajs/rfdfs3SO+kD2a9I2b4Ck4C2DgHfViXydVe" crossorigin="anonymous"></script>*@
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0-beta1/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqFjcJ6pajs/rfdfs3SO+kD2a9I2b4Ck4C2DgHfViXydVe" crossorigin="anonymous"></script>*@
 
 </head>
 <body>
@@ -32,8 +32,8 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         @*<li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>*@
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            </li>*@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/MailingList">Home</a>
                         </li>

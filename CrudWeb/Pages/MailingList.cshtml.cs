@@ -44,15 +44,12 @@ namespace CrudWeb.Pages
             _context.SaveChanges();
 
             // Save to session after successful form submission
-            //HttpContext.Session.SetString("FormSubmitted", "true");
+            HttpContext.Session.SetString("FormSubmitted", "true");
             Response.Cookies.Append("FormSubmitted", "true");
 
 
-
-            TempData["ShowSuccessToast"] = "true";
-
-            // Redirect to a new page to show success, or set a flag to trigger a modal or toast.
-            return RedirectToPage("success"); // Assuming you have a "Success" Razor Page.
+            
+            return RedirectToPage("success"); 
         }
 
         public IActionResult OnPostUpdate(int id, string firstName, string lastName, string email)
@@ -60,7 +57,7 @@ namespace CrudWeb.Pages
             var personToUpdate = _context.MailingList.FirstOrDefault(p => p.ID == id);
             if (personToUpdate == null)
             {
-                // Handle the situation where the record doesn't exist.
+                
                 return Page();
             }
 
@@ -69,7 +66,7 @@ namespace CrudWeb.Pages
             personToUpdate.Email = email;
             _context.SaveChanges();
 
-            return RedirectToPage();
+            return RedirectToPage("Success");
         }
 
 
